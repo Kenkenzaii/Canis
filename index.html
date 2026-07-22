@@ -1,24 +1,406 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Canis · Kenkenzaii</title>
-  <style>
-    :root { color-scheme: light dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: linear-gradient(135deg, #0f172a, #164e63); color: #f8fafc; }
-    main { width: min(680px, calc(100% - 3rem)); padding: 3rem; border: 1px solid rgb(255 255 255 / 18%); border-radius: 24px; background: rgb(15 23 42 / 72%); box-shadow: 0 24px 80px rgb(0 0 0 / 28%); backdrop-filter: blur(14px); }
-    h1 { margin: 0 0 1rem; font-size: clamp(2.2rem, 8vw, 4.5rem); }
-    p { margin: 0.6rem 0; color: #cbd5e1; font-size: 1.1rem; line-height: 1.7; }
-    a { color: #67e8f9; }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>Canis</h1>
-    <p>这是 Kenkenzaii 的 Canis 项目网页。</p>
-    <p>页面由 <code>D:\No5\project_page</code> 发布。</p>
-    <p><a href="https://github.com/Kenkenzaii">返回 GitHub 主页</a></p>
-  </main>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CANIS canonicalizes arbitrarily oriented 3D assets through generative priors and semantic 2D–3D correspondence."
+    />
+    <meta name="theme-color" content="#fbf9f6" />
+    <title>CANIS · Canonicalize Your 3D Models</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="CANIS home">
+        <span class="brand-mark">C</span>
+        <span>CANIS</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#results">Results</a>
+        <a href="#real-data">Real data</a>
+        <a href="#partial-data">Partial data</a>
+        <a href="#correspondence">Correspondence</a>
+      </nav>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-backdrop" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> CANIS · Project Page</p>
+          <h1 id="hero-title">
+            <strong>CANIS:</strong> Canonicalize Your 3D Models
+          </h1>
+          <p class="paper-subtitle">
+            Shape-guided canonicalization through semantic 2D–3D correspondence
+          </p>
+          <p class="hero-deck">
+            A semantic, correspondence-driven framework for recovering a consistent
+            canonical orientation from synthetic, real-world, and partial 3D observations.
+          </p>
+          <div class="hero-actions" aria-label="Project resources">
+            <a class="pill pill-primary" href="#results">Explore results <span>↘</span></a>
+            <!-- Replace # with the Space URL and remove aria-disabled when it is ready. -->
+            <a class="pill pill-huggingface" href="#" aria-disabled="true">
+              <span class="hf-mark" aria-hidden="true">HF</span>
+              Hugging Face Demo
+            </a>
+          </div>
+        </div>
+
+        <figure class="teaser-card reveal" data-delay="120">
+          <img
+            src="assets/images/fig_teaser.png"
+            alt="CANIS teaser showing diverse 3D objects before and after canonicalization"
+          />
+          <figcaption>
+            <span>01 / Teaser</span>
+            <span>Arbitrary pose → canonical pose</span>
+          </figcaption>
+        </figure>
+        <a class="scroll-cue" href="#overview"><span></span>Scroll to explore</a>
+      </section>
+
+      <section class="section intro" id="overview" aria-labelledby="overview-title">
+        <div class="section-index reveal">01</div>
+        <div class="section-heading reveal">
+          <p class="kicker">Overview · Abstract</p>
+          <h2 id="overview-title">A canonical frame for the 3D world.</h2>
+        </div>
+        <div class="abstract-grid">
+          <p class="abstract-lead reveal">
+            Canonical orientation is a quiet prerequisite for reliable 3D understanding:
+            objects that mean the same thing should face the same way.
+          </p>
+          <div class="abstract-copy reveal" data-delay="100">
+            <p>
+              We present <strong>CANIS</strong>, a framework for canonicalizing 3D objects in
+              arbitrary orientations. CANIS uses a shape-guided generative prior to synthesize
+              a canonical proxy, then extracts semantic 2D–3D correspondences from cross-attention
+              to align the input geometry with that proxy.
+            </p>
+            <p>
+              The resulting patch-to-cluster registration is category-agnostic and robust across
+              diverse shapes, real-world scans, and partial observations. The same correspondences
+              naturally support interpretable cross-model analysis. 
+            </p>
+          </div>
+        </div>
+
+        <figure class="method-card reveal">
+          <div class="figure-toolbar">
+            <span><i></i> Method at a glance</span>
+            <button class="zoom-button" type="button" data-lightbox="assets/images/Fig_pipeline.png">
+              Expand <span>↗</span>
+            </button>
+          </div>
+          <img
+            src="assets/images/Fig_pipeline.png"
+            alt="CANIS pipeline: shape-guided canonical proxy synthesis and semantic correspondence registration"
+          />
+          <figcaption>
+            A canonical proxy is synthesized from the input shape. Cross-attention connects
+            selected image patches to semantic 3D clusters for anchored registration.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section gallery-section" id="results" aria-labelledby="results-title">
+        <div class="section-index reveal">02</div>
+        <div class="section-heading split-heading reveal">
+          <div>
+            <p class="kicker">Main results</p>
+            <h2 id="results-title">From rotation to recognition.</h2>
+          </div>
+          <p>
+            Follow the semantic evidence from an anchored 2D observation through point-cloud
+            registration to its corresponding render-norm 3D asset.
+          </p>
+        </div>
+
+        <div class="main-results-viewer reveal" data-gallery="main">
+          <div class="main-results-grid">
+            <figure class="result-stage result-model-stage">
+              <figcaption>
+                <span>01</span>
+                <div><strong>3D source</strong><small>Canonical GLB</small></div>
+              </figcaption>
+              <div class="result-media result-media-wide" data-main-model>
+                <canvas aria-label="Interactive Main Results GLB viewer"></canvas>
+                <div class="result-model-loading" data-model-loading hidden>Loading 3D</div>
+                <div class="result-empty result-empty-model" data-main-model-empty data-model-empty aria-hidden="true">
+                  <span class="empty-cube"><i></i><i></i><i></i></span>
+                  <small>3D asset pending</small>
+                </div>
+                <div class="result-model-error" data-model-error hidden>GLB unavailable</div>
+                <div class="source-thumbnail">
+                  <div class="source-thumbnail-toolbar">
+                    <span class="source-thumbnail-label">Selected 2D observation</span>
+                    <button class="source-thumbnail-expand" data-main-image-expand type="button" aria-label="Expand 2D observation" title="Expand image" hidden>
+                      <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                  <div class="source-thumbnail-media">
+                    <img data-main-image2d hidden alt="" />
+                    <div class="source-thumbnail-empty" data-main-image2d-empty aria-hidden="true">
+                      <span class="empty-anchor-grid"><i></i><i></i><i></i><i></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="result-stage result-registration-stage">
+              <figcaption>
+                <span>02</span>
+                <div><strong>Anchor registration</strong><small>Before + after canonicalization</small></div>
+              </figcaption>
+              <div class="registration-stack">
+                <div class="registration-view registration-before">
+                  <span class="registration-state">Uncanonicalized</span>
+                  <img data-main-registration-before hidden alt="" />
+                  <div class="registration-empty" data-main-registration-before-empty aria-hidden="true">
+                    <span class="empty-registration-mark"><i></i><i></i></span>
+                  </div>
+                </div>
+                <div class="registration-view registration-after">
+                  <span class="registration-state">Canonicalized</span>
+                  <img data-main-registration-after hidden alt="" />
+                  <div class="registration-empty" data-main-registration-after-empty aria-hidden="true">
+                    <span class="empty-registration-mark"><i></i><i></i></span>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </div>
+
+          <div class="main-results-controls">
+            <button class="gallery-arrow prev" type="button" aria-label="Previous example" title="Previous case">
+              <span aria-hidden="true">&#8592;</span>
+            </button>
+            <div class="gallery-meta">
+              <span class="gallery-count"><b data-gallery-current>01</b> / <span data-gallery-total>11</span></span>
+              <strong data-gallery-title>Case 07</strong>
+            </div>
+            <div class="gallery-dots" aria-label="Choose example"></div>
+            <button class="gallery-arrow next" type="button" aria-label="Next example" title="Next case">
+              <span aria-hidden="true">&#8594;</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dataset-section" id="real-data" aria-labelledby="real-title">
+        <div class="section-index reveal">03</div>
+        <div class="section-heading split-heading reveal">
+          <div>
+            <p class="kicker">OmniObject3D · Real data</p>
+            <h2 id="real-title">Real-world scans, canonically aligned.</h2>
+          </div>
+          <p>
+            CANIS transfers clean semantic orientation cues to noisy, textured real-world captures.
+            Each group pairs four captured scans with their recovered canonical orientations.
+          </p>
+        </div>
+        <div class="dataset-browser reveal" data-dataset-viewer="real">
+          <button class="dataset-nav prev" type="button" aria-label="Previous real-data group"><span aria-hidden="true"></span></button>
+          <div class="dataset-stage">
+            <div class="dataset-toolbar">
+              <div class="dataset-set-title"><span>Real data</span><strong data-case-title>Set 01</strong></div>
+              <div class="gallery-dots" aria-label="Choose real-data group"></div>
+              <div class="dataset-counter"><b data-case-current>01–04</b><span>/</span><span data-case-total>16</span></div>
+            </div>
+            <div class="dataset-pair">
+              <figure class="dataset-panel input-panel">
+                <figcaption><strong>Input</strong><span>Captured orientation</span></figcaption>
+                <div class="dataset-media-grid" data-case-input role="group" aria-label="Real-data input placeholders">
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>01</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>02</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>03</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>04</span></div>
+                </div>
+              </figure>
+              <div class="dataset-transform" aria-hidden="true"><span>→</span><small>CANIS</small></div>
+              <figure class="dataset-panel output-panel">
+                <figcaption><strong>Output</strong><span>Canonical pose</span></figcaption>
+                <div class="dataset-media-grid" data-case-output role="group" aria-label="Real-data output placeholders">
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>01</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>02</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>03</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>04</span></div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <button class="dataset-nav next" type="button" aria-label="Next real-data group"><span aria-hidden="true"></span></button>
+        </div>
+      </section>
+
+      <section class="section dataset-section" id="partial-data" aria-labelledby="partial-title">
+        <div class="section-index reveal">04</div>
+        <div class="section-heading split-heading reveal">
+          <div>
+            <p class="kicker">Partial observations</p>
+            <h2 id="partial-title">Reasoning beyond what is visible.</h2>
+          </div>
+          <p>
+            Even when geometry is incomplete, the semantic proxy provides a stable frame for
+            recovering the intended orientation across groups of challenging partial examples.
+          </p>
+        </div>
+        <div class="dataset-browser reveal" data-dataset-viewer="partial">
+          <button class="dataset-nav prev" type="button" aria-label="Previous partial-data group"><span aria-hidden="true"></span></button>
+          <div class="dataset-stage">
+            <div class="dataset-toolbar">
+              <div class="dataset-set-title"><span>Partial data</span><strong data-case-title>Set 01</strong></div>
+              <div class="gallery-dots" aria-label="Choose partial-data group"></div>
+              <div class="dataset-counter"><b data-case-current>01–04</b><span>/</span><span data-case-total>16</span></div>
+            </div>
+            <div class="dataset-pair">
+              <figure class="dataset-panel input-panel">
+                <figcaption><strong>Input</strong><span>Partial geometry</span></figcaption>
+                <div class="dataset-media-grid" data-case-input role="group" aria-label="Partial-data input placeholders">
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>01</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>02</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>03</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>04</span></div>
+                </div>
+              </figure>
+              <div class="dataset-transform" aria-hidden="true"><span>→</span><small>CANIS</small></div>
+              <figure class="dataset-panel output-panel">
+                <figcaption><strong>Output</strong><span>Canonical pose</span></figcaption>
+                <div class="dataset-media-grid" data-case-output role="group" aria-label="Partial-data output placeholders">
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>01</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>02</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>03</span></div>
+                  <div class="media-slot"><img data-slot-media alt="" hidden /><span data-slot-index>04</span></div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <button class="dataset-nav next" type="button" aria-label="Next partial-data group"><span aria-hidden="true"></span></button>
+        </div>
+      </section>
+
+      <section class="section correspondence-section" id="correspondence" aria-labelledby="corr-title">
+        <div class="section-index reveal">06</div>
+        <div class="section-heading split-heading reveal">
+          <div>
+            <p class="kicker">2D–3D correspondence</p>
+            <h2 id="corr-title">Following meaning across representations.</h2>
+          </div>
+          <p>
+            Paired views expose the semantic links learned by different reconstruction backbones.
+            Select a model to inspect its 2D image patches and corresponding 3D regions.
+          </p>
+        </div>
+
+        <div class="correspondence-browser reveal" data-correspondence-browser>
+          <button class="correspondence-nav prev" type="button" aria-label="Previous correspondence case" title="Previous case">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="correspondence-content">
+            <div class="model-tabs" role="tablist" aria-label="Correspondence backbone">
+              <button role="tab" aria-selected="true" data-model="trellis">TRELLIS <span>01</span></button>
+              <button role="tab" aria-selected="false" data-model="trellis-oa">TRELLIS-OA <span>02</span></button>
+              <button role="tab" aria-selected="false" data-model="triposr">TripoSR <span>03</span></button>
+            </div>
+
+            <div class="correspondence-stage">
+              <div class="correspondence-media">
+                <div class="correspondence-case-badge">
+                  <strong data-corr-case-title>Case 01</strong>
+                  <span><b data-corr-case-current>01</b> / <span data-corr-case-total>15</span></span>
+                </div>
+                <div class="correspondence-pair">
+                  <figure class="correspondence-pane">
+                    <figcaption><strong>2D image</strong><span>Semantic anchors</span></figcaption>
+                    <div class="correspondence-image">
+                      <img data-corr-image alt="" />
+                      <div class="placeholder-art" hidden aria-label="2D image placeholder">
+                        <span class="node node-a"></span><span class="node node-b"></span>
+                        <span class="node node-c"></span><span class="trace trace-a"></span>
+                        <span class="trace trace-b"></span>
+                        <strong>2D image pending</strong>
+                        <small data-corr-empty-label>Case 01 · TRELLIS</small>
+                      </div>
+                    </div>
+                  </figure>
+
+                  <figure class="correspondence-pane">
+                    <figcaption><strong>3D model</strong><span>Anchor projection</span></figcaption>
+                    <div class="correspondence-model" data-corr-model data-model-src="">
+                      <canvas aria-label="Interactive correspondence GLB viewer"></canvas>
+                      <div class="correspondence-model-loading" data-model-loading hidden>Loading 3D</div>
+                      <div class="correspondence-model-empty" data-model-empty>
+                        <span class="empty-cube"><i></i><i></i><i></i></span>
+                        <small>GLB pending</small>
+                      </div>
+                      <div class="correspondence-model-error" data-model-error hidden>GLB unavailable</div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+              <div class="correspondence-caption">
+                <span class="model-number">01</span>
+                <div>
+                  <p class="kicker" data-corr-kicker>TRELLIS backbone</p>
+                  <h3 data-corr-title>Image patch ↔ 3D anchor</h3>
+                  <p data-corr-description>
+                    Color-linked points reveal how selected image evidence activates semantically
+                    corresponding regions in the generated 3D representation.
+                  </p>
+                </div>
+                <button class="zoom-button corr-expand" type="button">Expand <span>↗</span></button>
+              </div>
+            </div>
+          </div>
+
+          <button class="correspondence-nav next" type="button" aria-label="Next correspondence case" title="Next case">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-backdrop" aria-hidden="true"></div>
+        <div class="closing-content reveal">
+          <p class="kicker">Conclusion</p>
+          <h2>Canonical orientation,<br />without category boundaries.</h2>
+          <a class="pill pill-primary" href="#top">Back to top <span>↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top"><span class="brand-mark">C</span><span>CANIS</span></a>
+      <p>Canonicalize your 3D models.</p>
+      <p class="footer-note">Research project page · 2026</p>
+    </footer>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded figure" hidden>
+      <button type="button" class="lightbox-close" aria-label="Close expanded figure">×</button>
+      <img alt="Expanded project figure" />
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three/three.module.min.js",
+          "three/addons/": "./vendor/three/addons/"
+        }
+      }
+    </script>
+    <script src="script.js"></script>
+    <script type="module" src="glb-viewer.js"></script>
+  </body>
 </html>
