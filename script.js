@@ -161,19 +161,19 @@ const CORRESPONDENCE_CASES = [
 ];
 
 const CORRESPONDENCE_MODELS = {
-  trellis: {
-    number: "01",
-    kicker: "TRELLIS backbone",
-    title: "Image patch ↔ 3D anchor",
-    description:
-      "Color-linked points reveal how selected image evidence activates semantically corresponding regions in the generated 3D representation.",
-  },
   "trellis-oa": {
-    number: "02",
+    number: "01",
     kicker: "TRELLIS-OA backbone",
     title: "Image patch ↔ 3D anchor",
     description:
       "The OA variant exposes patch-to-cluster bindings used by CANIS to construct semantically anchored 3D registration constraints.",
+  },
+  trellis: {
+    number: "02",
+    kicker: "TRELLIS backbone",
+    title: "Image patch ↔ 3D anchor",
+    description:
+      "Color-linked points reveal how selected image evidence activates semantically corresponding regions in the generated 3D representation.",
   },
   triposr: {
     number: "03",
@@ -416,7 +416,7 @@ const corrPrevious = document.querySelector(".correspondence-nav.prev");
 const corrNext = document.querySelector(".correspondence-nav.next");
 const corrContent = document.querySelector(".correspondence-content");
 let currentCorrespondenceCase = 0;
-let currentCorrespondenceModel = "trellis";
+let currentCorrespondenceModel = "trellis-oa";
 let currentCorrespondenceImage = "";
 
 function selectCorrespondence(key) {
