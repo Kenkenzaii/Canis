@@ -19,8 +19,8 @@
  */
 const MEDIA = {
   mainResults: [
-    { caseNumber: 7, uid: "74fa123561744c32bff6d5ef60b88ad7" },
     { caseNumber: 8, uid: "758eaa4f4cec4d31a41964a330bfaf46" },
+    { caseNumber: 7, uid: "74fa123561744c32bff6d5ef60b88ad7" },
     { caseNumber: 9, uid: "89545a657ce243148738302a4843f339" },
     { caseNumber: 10, uid: "911b309008d24829b65f72fd913b91b7" },
     { caseNumber: 1, uid: "2a7dbf5f9a1e45c299bc8dea451f9039" },
