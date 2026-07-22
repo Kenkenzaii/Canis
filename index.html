@@ -318,14 +318,18 @@
             <div class="correspondence-stage">
               <div class="correspondence-media">
                 <div class="correspondence-case-badge">
-                  <strong data-corr-case-title>Case 01</strong>
+                  <strong data-corr-case-title>Fish</strong>
                   <span><b data-corr-case-current>01</b> / <span data-corr-case-total>15</span></span>
                 </div>
                 <div class="correspondence-pair">
                   <figure class="correspondence-pane">
                     <figcaption><strong>2D image</strong><span>Semantic anchors</span></figcaption>
                     <div class="correspondence-image">
-                      <img data-corr-image alt="" />
+                      <img
+                        data-corr-image
+                        src="assets/correspondences/03d4836e66e04a5b99c994fd0b6a5f44/2d_anchors.png"
+                        alt="TRELLIS-OA backbone: Image patch ↔ 3D anchor"
+                      />
                       <div class="placeholder-art" hidden aria-label="2D image placeholder">
                         <span class="node node-a"></span><span class="node node-b"></span>
                         <span class="node node-c"></span><span class="trace trace-a"></span>
@@ -338,7 +342,12 @@
 
                   <figure class="correspondence-pane">
                     <figcaption><strong>3D model</strong><span>Anchor projection</span></figcaption>
-                    <div class="correspondence-model" data-corr-model data-model-src="">
+                    <div
+                      class="correspondence-model"
+                      data-corr-model
+                      data-model-key="trellis-oa"
+                      data-model-src="assets/correspondences/03d4836e66e04a5b99c994fd0b6a5f44/trellis_oa_marked_anchors.glb"
+                    >
                       <canvas aria-label="Interactive correspondence GLB viewer"></canvas>
                       <div class="correspondence-model-loading" data-model-loading hidden>Loading 3D</div>
                       <div class="correspondence-model-empty" data-model-empty>
