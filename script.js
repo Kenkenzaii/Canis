@@ -1,22 +1,4 @@
-/*
- * MEDIA CONFIGURATION
- * Fill the blank Main Results paths and Real/Partial GIF paths after selecting cases.
- * Paths are relative to this project_page directory.
- * Main Results example:
- * {
- *   title: "car",
- *   image2d: "assets/main-results/CASE_UID/image_anchors.png",
- *   registrationBefore: "assets/main-results/CASE_UID/registration_before.png",
- *   registrationAfter: "assets/main-results/CASE_UID/registration_after.png",
- *   glb: "assets/main-results/CASE_UID/canonical.glb",
- * }
- * Real/Partial example:
- * {
- *   name: "belt_021",
- *   input: "assets/gifs/real/input/belt_021__Scan__Scan__168340pts.gif",
- *   output: "assets/gifs/real/output/belt_021__Scan__Scan__168340pts.gif",
- * }
- */
+
 const MEDIA = {
   mainResults: [
     { caseNumber: 8, uid: "758eaa4f4cec4d31a41964a330bfaf46" },
@@ -144,20 +126,15 @@ function correspondenceCase(title, uid) {
 
 const CORRESPONDENCE_CASES = [
   correspondenceCase("Fish", "03d4836e66e04a5b99c994fd0b6a5f44"),
-  correspondenceCase("Sports car", "0ce1420f5d3045bfbbfc7e3683761e1e"),
-  correspondenceCase("Dragon", "2fe1650ef89247a58fddeb07e47c43e9"),
-  correspondenceCase("Sunflower", "3e38e8351c6e48e786cdd8bd181a09db"),
-  correspondenceCase("Motorcycle", "3e6f9b9cbaec41dfa411696177759431"),
-  correspondenceCase("Violin", "4ea1eb161ce34b3cad5b2aa50428d9f5"),
-  correspondenceCase("Motorbike", "4fc3500e04b14e73b942d85bc948c5e9"),
-  correspondenceCase("Airplane", "4ff9de0228b446758a2e8a9beb687acc"),
-  correspondenceCase("Cartoon cat", "cartooncatsample"),
   correspondenceCase("Cartoon elephant", "cartoonelephantsample"),
-  correspondenceCase("Cartoon sponge", "haimiansample"),
+  correspondenceCase("Motorcycle", "3e6f9b9cbaec41dfa411696177759431"),
+  correspondenceCase("Cartoon cat", "cartooncatsample"),
   correspondenceCase("Koala", "koalasample"),
+  correspondenceCase("Motorbike", "4fc3500e04b14e73b942d85bc948c5e9"),
   correspondenceCase("Rabbit", "rabbitsample"),
+  correspondenceCase("Violin", "4ea1eb161ce34b3cad5b2aa50428d9f5"),
+  correspondenceCase("Sports car", "0ce1420f5d3045bfbbfc7e3683761e1e"),
   correspondenceCase("Squirrel", "squirrelsample"),
-  correspondenceCase("Tiger", "tigernewsample"),
 ];
 
 const CORRESPONDENCE_MODELS = {
